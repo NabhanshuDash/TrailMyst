@@ -20,7 +20,7 @@ export default function HomeScreen() {
       {/* Singleplayer Button */}
       <TouchableOpacity 
         style={styles.button}
-        onPress={() => router.push('/game/singleplayer')} // We'll create this screen later
+        onPress={() => router.push('/screens/SinglePlayerScreen')} // We'll create this screen later
       >
         <Text style={styles.buttonText}>Singleplayer</Text>
       </TouchableOpacity>
