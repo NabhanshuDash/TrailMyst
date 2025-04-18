@@ -1,30 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { router } from 'expo-router';
 import Icon from 'react-native-vector-icons/Feather';
+import {AuthContext} from '../../context';
 
 
 const SignupScreen = () => {
   const [email, setEmail] = useState('');
+  const [username, setUsername] =useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { register } = useContext(AuthContext);
 
-  const handleSignup = () => {
+  const handleSignup = async() => {
     if (password !== confirmPassword) {
       Alert.alert('Error', 'Passwords do not match');
       return;
     }
 
-    // Add signup logic here
-    console.log('Signing up with', email, password);
-    // Example: router.push('/home') after successful signup
+    if(!username || !email || !password) {
+      Alert.alert('Error', 'Wrong Credentials');
+      return;
+    }
+
+    try {
+      await register(username, email, password);
+      router.replace('/screens/HomeScreen');
+    } catch(err) {
+      Alert.alert('Error', err);
+    }
+
   };
+
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        placeholderTextColor="#aaa"
+        value={username}
+        onChangeText={setUsername}
+        keyboardType="Username"
+        autoCapitalize="none"
+      />
 
       <TextInput
         style={styles.input}
@@ -36,23 +59,42 @@ const SignupScreen = () => {
         autoCapitalize="none"
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#aaa"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+<View style={styles.passwordContainer}>
+  <TextInput
+    style={styles.passwordInput}
+    placeholder="Password"
+    placeholderTextColor="#aaa"
+    secureTextEntry={!showPassword}
+    value={password}
+    onChangeText={setPassword}
+  />
+  <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+    <Icon
+      name={showPassword ? 'eye' : 'eye-off'}
+      size={20}
+      color="#aaa"
+    />
+  </TouchableOpacity>
+</View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Re-enter Password"
-        placeholderTextColor="#aaa"
-        secureTextEntry
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-      />
+<View style={styles.passwordContainer}>
+  <TextInput
+    style={styles.passwordInput}
+    placeholder="Re-enter Password"
+    placeholderTextColor="#aaa"
+    secureTextEntry={!showConfirmPassword}
+    value={confirmPassword}
+    onChangeText={setConfirmPassword}
+  />
+  <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+    <Icon
+      name={showConfirmPassword ? 'eye' : 'eye-off'}
+      size={20}
+      color="#aaa"
+    />
+  </TouchableOpacity>
+</View>
+
 
       <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Sign Up</Text>
@@ -104,4 +146,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
   },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#1f2833',
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 10,
+  },
+  passwordInput: {
+    flex: 1,
+    color: '#fff',
+    fontSize: 16,         // increase font size
+    paddingVertical: 4,   // better text alignment
+    minHeight: 40,
+  },
+  
 });
