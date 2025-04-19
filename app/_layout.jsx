@@ -15,6 +15,8 @@ export default function Layout() {
       <Stack.Screen name="screens/SignupScreen" options={{ title: 'Sign Up' }} />
       <Stack.Screen name="screens/HomeScreen" options={{ title: 'Home', headerBackTitle: 'Logout' }} />
       <Stack.Screen name="screens/SinglePlayerScreen" options={{ title: 'Single Player' }} />
+      <Stack.Screen name="hunt/[huntId]" options={{ title: 'Hunt Details' }} />
+      <Stack.Screen name="screens/ActiveRiddleScreen" options={{title: 'Playing Riddle' }} />
     </Stack>
     </AuthProvider>
   );

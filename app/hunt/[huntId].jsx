@@ -15,9 +15,9 @@ export default function HuntScreen() {
         const loadHuntDetails = async () => {
             try {
                 setLoading(true);
-                console.log('helloWorld ' + huntId);
+                // console.log('helloWorld ' + huntId);
                 if(!huntId) {
-                    console.log('Hello World');
+                    // console.log('Hello World');
                     return;
                 }
                 const hunt = await fetchHuntById(huntId);
@@ -45,13 +45,15 @@ export default function HuntScreen() {
         try {
             const res = await addHuntToUser();
             if(res.success) {
-                router.replace('/screens/activeRiddleScreen');
+                router.replace('/screens/ActiveRiddleScreen');
             }
             else {
-                Alert.alert('Error');
+                // Alert.alert('Error');
+                console.log('Error');
             }
         } catch(err) {
-            Alert.alert("Error", err);
+            console.log(err);
+            // Alert.alert("Error", err.message);
             return;
         }
     }

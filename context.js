@@ -55,10 +55,10 @@ export const AuthProvider = ({ children }) => {
         huntId
       });
 
-      console.log('response ' + res);
-      console.log(res.data);
+      // console.log('response ' + res);
+      // console.log(res.data);
       const hunt = res.data;
-      console.log(hunt);
+      // console.log(hunt);
       return hunt;
 
     } catch(err) {
@@ -71,8 +71,8 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(`${BASE_URL}/play/addHuntToUser`, {
-        User,
-        activeHunt
+        userId: User,
+        hunt: activeHunt
       });
 
       if(res.status === 200) {
@@ -82,7 +82,8 @@ export const AuthProvider = ({ children }) => {
       return {success: false}
 
     } catch(err) {
-      Alert.alert('Error', err);
+      // Alert.alert('Error', err);
+      console.log(err);
       return {success : false};
     }
   }
