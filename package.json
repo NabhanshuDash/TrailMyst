@@ -21,7 +21,11 @@
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
     "@react-navigation/stack": "^7.2.10",
+<<<<<<< HEAD
     "@rnmapbox/maps": "^10.1.38",
+=======
+    "@viro-community/react-viro": "^2.41.1",
+>>>>>>> 134d8fb21b8fe680957e99bcda3ddb1958441363
     "axios": "^1.8.4",
     "expo": "^52.0.46",
     "expo-blur": "~14.0.3",
