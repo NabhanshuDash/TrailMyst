@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
-  const [activeHunt, setActiveHunt] = useState(null);
+  const [activeHunt, setActiveHunt] = useState({});
   const [currentClueIndex, setCurrentClueIndex] = useState(null);
   const BASE_URL = 'https://bba7-2409-40e3-2005-6ba2-3101-4ad1-ba3c-5d41.ngrok-free.app/api';
 
@@ -44,19 +44,71 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const fetchHuntById = async(huntId) => {
+  const fetchHuntById = async (huntId) => {
+
+    if(!huntId) {
+      return {success : false};
+    }
+
     try {
-      const res = await axios.get(`{$BASE_URL}/riddles/getHuntById`, {
+      const res = await axios.post(`${BASE_URL}/riddles/getHuntById`, {
         huntId
       });
 
-      const {hunt} = res.data;
+      console.log('response ' + res);
+      console.log(res.data);
+      const hunt = res.data;
       console.log(hunt);
       return hunt;
 
     } catch(err) {
       Alert.alert('Error In Fetching Hunt', err);
       return null;
+    }
+  }
+
+  const addHuntToUser = async() => {
+
+    try {
+      const res = await axios.post(`${BASE_URL}/play/addHuntToUser`, {
+        User,
+        activeHunt
+      });
+
+      if(res.status === 200) {
+        return {success : true}
+      }
+
+      return {success: false}
+
+    } catch(err) {
+      Alert.alert('Error', err);
+      return {success : false};
+    }
+  }
+
+  const solveClue = async() => {
+
+    if(!activeHunt) return {success : false};
+
+    const huntId = activeHunt._id;
+
+    try {
+      const res = await axios.post(`${BASE_URL}/play/solveClue`, {
+        User,
+        huntId,
+        currentClueIndex
+      });
+
+      if(res.status === 200) {
+        return {success : true}
+      }
+
+      return {success: false}
+
+    } catch(err) {
+      Alert.alert('Error', err);
+      return {success : false};
     }
   }
 
@@ -92,8 +144,6 @@ export const AuthProvider = ({ children }) => {
       const { user } = res.data;
       await AsyncStorage.setItem('token', user._id);
 
-      // console.log(token);
-
       setUser({ id: user._id });
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${user._id}`;
@@ -112,7 +162,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ User, login, register, logout, fetchHunts, fetchHuntById, activeHunt, setActiveHunt, currentClueIndex, setCurrentClueIndex }}>
+    <AuthContext.Provider value={{ User, login, register, logout, fetchHunts, fetchHuntById, activeHunt, setActiveHunt, currentClueIndex, setCurrentClueIndex, addHuntToUser, solveClue }}>
       {children}
     </AuthContext.Provider>
   );

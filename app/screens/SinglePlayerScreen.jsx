@@ -16,7 +16,6 @@ export default function SinglePlayerScreen() {
 
       try {
         const res = await fetchHunts(location);
-        // const res = await fetchHunts(location);
         console.log('Fetched hunts:', res);
 
         setHunts(res);
@@ -69,7 +68,7 @@ export default function SinglePlayerScreen() {
                 onPress={() => router.push(`/hunt/${item}`)}
               >
                 <Image
-                  source={{  }}
+                  source={{ uri : `https://source.unsplash.com/600x400/?${location}` }}
                   style={styles.huntImage}
                   resizeMode="cover"
                 />

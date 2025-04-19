@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { router } from 'expo-router';
-import { useLocalSearchParams } from 'expo-router';
+import { useGlobalSearchParams } from 'expo-router';
+import { AuthContext } from '../../context';
 
 export default function HuntScreen() {
-    const { huntId } = useLocalSearchParams();
-    const { fetchHuntById } = useContext(AuthContext); // You'll need to implement this in your AuthContext
+    const { huntId } = useGlobalSearchParams();
     const [currentHunt, setCurrentHunt] = useState(null);
+    const { fetchHuntById, setActiveHunt, setCurrentClueIndex, addHuntToUser } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
@@ -14,6 +15,11 @@ export default function HuntScreen() {
         const loadHuntDetails = async () => {
             try {
                 setLoading(true);
+                console.log('helloWorld ' + huntId);
+                if(!huntId) {
+                    console.log('Hello World');
+                    return;
+                }
                 const hunt = await fetchHuntById(huntId);
                 setCurrentHunt(hunt);
                 setLoading(false);
@@ -26,6 +32,29 @@ export default function HuntScreen() {
 
         loadHuntDetails();
     }, [huntId]);
+
+    const startButtonClicked = async () => {
+
+        if(!currentHunt) {
+            Alert.alert('No Hunt available');
+        }
+
+        setActiveHunt(currentHunt);
+        setCurrentClueIndex(0);
+
+        try {
+            const res = await addHuntToUser();
+            if(res.success) {
+                router.replace('/screens/activeRiddleScreen');
+            }
+            else {
+                Alert.alert('Error');
+            }
+        } catch(err) {
+            Alert.alert("Error", err);
+            return;
+        }
+    }
 
     if (loading) {
         return (
@@ -85,11 +114,7 @@ export default function HuntScreen() {
             <TouchableOpacity 
                 style={styles.startButton}
                 onPress={() => {
-                    console.log('Start Game Pressed');
-                    router.push({ 
-                        pathname: '/game', 
-                        params: { huntId: huntId } 
-                    });
+                    startButtonClicked()
                 }}
             >
                 <Text style={styles.buttonText}>Start Hunt</Text>
