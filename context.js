@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import jwtDecode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const BASE_URL = 'http://localhost:5000/api/auth';
+  const [User, setUser] = useState(null);
+  const BASE_URL = 'https://bba7-2409-40e3-2005-6ba2-3101-4ad1-ba3c-5d41.ngrok-free.app/api';
 
   // Load token on startup
   useEffect(() => {
@@ -15,8 +15,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const token = await AsyncStorage.getItem('token');
         if (token) {
-          const decoded = jwtDecode(token);
-          setUser({ id: decoded.id });
+          setUser({ id: token });
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
       } catch (err) {
@@ -27,42 +26,63 @@ export const AuthProvider = ({ children }) => {
     loadToken();
   }, []);
 
+  const fetchHunts = async (location) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/riddles/generate-hunts`, {
+        location
+      });
+
+      const { hunts } = res.data;
+      return hunts;
+
+    } catch(err) {
+      console.log('Hunt Fetching error:', err);
+      return null;
+    }
+  }
+
   const register = async (username, email, password) => {
     try {
-      const res = await axios.post(`${BASE_URL}/register`, {
+      const res = await axios.post(`${BASE_URL}/auth/register`, {
         username,
         email,
         password,
       });
 
-      const { token } = res.data;
-      await AsyncStorage.setItem('token', token);
+      const { user } = res.data;
+      await AsyncStorage.setItem('token', user._id);
 
-      const decoded = jwtDecode(token);
-      setUser({ id: decoded.id });
+      setUser({ id: user._id });
 
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${user._id}`;
+
+      return { success: true };
     } catch (err) {
-      console.error('Registration error:', err.response?.data || err.message);
+      console.error('Registration error:', err);
+      return { success: false, error: err };
     }
   };
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(`${BASE_URL}/login`, {
+      const res = await axios.post(`${BASE_URL}/auth/login`, {
         email,
         password,
       });
 
-      const { token } = res.data;
-      await AsyncStorage.setItem('token', token);
+      const { user } = res.data;
+      await AsyncStorage.setItem('token', user._id);
 
-      const decoded = jwtDecode(token);
-      setUser({ id: decoded.id });
+      // console.log(token);
 
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setUser({ id: user._id });
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${user._id}`;
+
+      return { success: true };
     } catch (err) {
-      console.error('Login error:', err.response?.data || err.message);
+      console.error('Login error:', err);
+      return { success: false, error: err };
     }
   };
 
@@ -73,7 +93,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ User, login, register, logout, fetchHunts }}>
       {children}
     </AuthContext.Provider>
   );

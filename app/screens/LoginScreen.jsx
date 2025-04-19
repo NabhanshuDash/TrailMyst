@@ -17,7 +17,11 @@ const LoginScreen = () => {
     }
 
     try {
-      await login(email, password);
+      const {success} = await login(email, password);
+      if(success === false) {
+        Alert.alert('Error in Logging In');
+        return;
+      }
       router.replace('/screens/HomeScreen');
     } catch (err) {
       Alert.alert('Login Failed', 'Invalid credentials or network error');

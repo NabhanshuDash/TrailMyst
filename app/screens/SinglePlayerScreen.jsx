@@ -1,40 +1,28 @@
-import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ActivityIndicator, FlatList } from 'react-native';
-import { router } from 'expo-router';
+import React, {useState, useEffect, useContext} from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { AuthContext } from '../../context';
 
 export default function SinglePlayerScreen() {
-  const [location, setLocation] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [hunts, setHunts] = useState([]);
-  const [error, setError] = useState('');
+    const [hunts, setHunts] = useState([]);
+    const [location, setLocation] = useState('');
+    const {fetchHunts} = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-  // Mock API call - replace with your actual backend call
-  const fetchHunts = async () => {
-    try {
+    const fetchHunt = async() => {
       setLoading(true);
       setError('');
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Mock response - replace with actual API response
-      const mockHunts = [
-        { id: '1', name: 'Treasure Hunt 1', imageUrl: '../../asset/maps/h1.jpg' },
-        { id: '2', name: 'Adventure Hunt', imageUrl: '../../asset/maps/h2.jpg' },
-        { id: '3', name: 'City Explorer', imageUrl: '../../asset/maps/h3.jpg' },
-      ];
-      
-      setHunts(mockHunts);
-    } catch (err) {
-      setError('Failed to fetch hunts. Please try again.');
-      console.error('API Error:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  return (
-    <View style={styles.container}>
+      try {
+        const res = await fetchHunts(location);
+        setHunts(res);
+      } catch(err) {
+        Alert.alert('Error hunt cannot be fetched', err);
+      }
+    }
+
+    return (
+      <View style={styles.container}>
       <Text style={styles.title}>Single Player Mode</Text>
       
       {/* Location Input */}
@@ -49,7 +37,7 @@ export default function SinglePlayerScreen() {
       {/* Search Button */}
       <TouchableOpacity
         style={styles.searchButton}
-        onPress={fetchHunts}
+        onPress={fetchHunt}
         disabled={loading || !location.trim()}
       >
         {loading ? (
@@ -68,18 +56,18 @@ export default function SinglePlayerScreen() {
           <Text style={styles.sectionTitle}>Available Hunts</Text>
           <FlatList
             data={hunts}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item}
             renderItem={({ item }) => (
               <TouchableOpacity 
                 style={styles.huntCard}
-                onPress={() => router.push(`/hunt/${item.id}`)}
+                onPress={() => router.push(`/hunt/${item}`)}
               >
                 <Image
-                  source={{ uri: item.imageUrl }}
+                  source={{  }}
                   style={styles.huntImage}
                   resizeMode="cover"
                 />
-                <Text style={styles.huntName}>{item.name}</Text>
+                <Text style={styles.huntName}>{location}</Text>
               </TouchableOpacity>
             )}
           />

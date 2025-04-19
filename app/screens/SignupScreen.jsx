@@ -26,7 +26,11 @@ const SignupScreen = () => {
     }
 
     try {
-      await register(username, email, password);
+      const {success} = await register(username, email, password);
+      if(success === false) {
+        Alert.alert('Error', 'User not Registered');
+        return;
+      }
       router.replace('/screens/HomeScreen');
     } catch(err) {
       Alert.alert('Error', err);
