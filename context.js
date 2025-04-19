@@ -7,6 +7,8 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
+  const [activeHunt, setActiveHunt] = useState(null);
+  const [currentClueIndex, setCurrentClueIndex] = useState(null);
   const BASE_URL = 'https://bba7-2409-40e3-2005-6ba2-3101-4ad1-ba3c-5d41.ngrok-free.app/api';
 
   // Load token on startup
@@ -38,6 +40,22 @@ export const AuthProvider = ({ children }) => {
 
     } catch(err) {
       console.log('Hunt Fetching error:', err);
+      return null;
+    }
+  }
+
+  const fetchHuntById = async(huntId) => {
+    try {
+      const res = await axios.get(`{$BASE_URL}/riddles/getHuntById`, {
+        huntId
+      });
+
+      const {hunt} = res.data;
+      console.log(hunt);
+      return hunt;
+
+    } catch(err) {
+      Alert.alert('Error In Fetching Hunt', err);
       return null;
     }
   }
@@ -94,7 +112,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ User, login, register, logout, fetchHunts }}>
+    <AuthContext.Provider value={{ User, login, register, logout, fetchHunts, fetchHuntById, activeHunt, setActiveHunt, currentClueIndex, setCurrentClueIndex }}>
       {children}
     </AuthContext.Provider>
   );
