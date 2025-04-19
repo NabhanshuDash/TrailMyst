@@ -1,9 +1,10 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, FlatList, Image } from 'react-native';
 import { AuthContext } from '../../context';
+import { router } from 'expo-router';
 
 export default function SinglePlayerScreen() {
-    const [hunts, setHunts] = useState([]);
+    const [hunts, setHunts] = useState(null);
     const [location, setLocation] = useState('');
     const {fetchHunts} = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
@@ -15,9 +16,14 @@ export default function SinglePlayerScreen() {
 
       try {
         const res = await fetchHunts(location);
+        // const res = await fetchHunts(location);
+        console.log('Fetched hunts:', res);
+
         setHunts(res);
+        setLoading(false);
       } catch(err) {
         Alert.alert('Error hunt cannot be fetched', err);
+        setLoading(false);
       }
     }
 
@@ -51,7 +57,7 @@ export default function SinglePlayerScreen() {
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
       
       {/* Hunts List */}
-      {hunts.length > 0 && (
+      {hunts && (!loading) && (
         <View style={styles.huntsContainer}>
           <Text style={styles.sectionTitle}>Available Hunts</Text>
           <FlatList

@@ -32,8 +32,9 @@ export const AuthProvider = ({ children }) => {
         location
       });
 
-      const { hunts } = res.data;
-      return hunts;
+      const { huntIDs } = res.data;
+      console.log(huntIDs);
+      return huntIDs;
 
     } catch(err) {
       console.log('Hunt Fetching error:', err);
