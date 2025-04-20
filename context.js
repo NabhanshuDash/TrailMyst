@@ -3,8 +3,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
+// creating the AuthContext
 export const AuthContext = createContext();
 
+// creating the AuthProvider
 export const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
   const [activeHunt, setActiveHunt] = useState({});
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     loadToken();
   }, []);
 
+  // fetching the hunts for a location uses julep
   const fetchHunts = async (location) => {
     try {
       const res = await axios.post(`${BASE_URL}/riddles/generate-hunts`, {
@@ -44,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // fetching single link by Id
   const fetchHuntById = async (huntId) => {
 
     if(!huntId) {
@@ -67,6 +71,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  // add Hunt to User Active Hunts
   const addHuntToUser = async() => {
 
     try {
