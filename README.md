@@ -1,5 +1,5 @@
 <h1 align="center">TrailMyst (Built with Expo & React Native)</h1>
-
+<a href="https://hack36.in"> <img src="https://postimage.me/images/2025/04/19/built-at-hack36.png" height=24px> </a>
 
 ## 🗺️ TrailMyst Overview
 
@@ -118,3 +118,6 @@ Team Name: Trilluminati FNGR
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+<a href="https://hack36.in"> <img src="https://postimage.me/images/2025/04/19/built-at-hack36.png" height=50px> </a>
