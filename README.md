@@ -69,8 +69,9 @@ This moves starter code to `app-example/` and gives you a fresh `app/` folder.
 
 ## Contributors:
 
-Team Name: Trilluminati FNG
+Team Name: Trilluminati FNGR
 
+* [Dhruv Rastogi](https://github.com/DHRUVRastogi-123)
 * [Mirga Farhaan Baig](https://github.com/fourhaan)
 * [Gantavya Rohatgi](https://github.com/gantavyarohatgi)
 * [Nabhanshu Dash](https://github.com/NabhanshuDash)
