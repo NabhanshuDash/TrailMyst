@@ -97,14 +97,14 @@ This moves starter code to `app-example/` and gives you a fresh `app/` folder.
 
 ## Screenshots:
 <p>
-  <img src="https://via.placeholder.com/280x580.png?text=Splash+Screen" width="280" height="580" hspace="10">
-  <img src="https://via.placeholder.com/280x580.png?text=Location+Hint+Screen" width="280" height="580" hspace="10">
+<img src="https://i.imgur.com/VTjgsOh.jpeg" width="280" height="580" hspace="10"> 
+<img src="https://i.imgur.com/MoV0s7d.jpeg" width="280" height="580" hspace="10"> 
+</p>
+<p>
+  <img src="https://i.imgur.com/KFMq2m2.jpeg" width="280" height="580" hspace="10">
+  <img src="https://i.imgur.com/HJ2uV9y.jpeg" width="280" height="580" hspace="10">
 </p>
 
-<p>
-  <img src="https://via.placeholder.com/280x580.png?text=Treasure+Chest+AR+Screen" width="280" height="580" hspace="10">
-  <img src="https://via.placeholder.com/280x580.png?text=Success+Alert+Screen" width="280" height="580" hspace="10">
-</p>
 
 ## Contributors:
 
