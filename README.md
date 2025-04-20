@@ -90,10 +90,10 @@ npm run reset-project
 This moves starter code to `app-example/` and gives you a fresh `app/` folder.
 
 ## Demo Video Link:
-<a href="#">Click to view our demo video</a> *(To be added)*
+<a href="">Click to view our demo video</a>
 
 ## Presentation Link:
-<a href="#">Click to view our presentation</a> *(To be added)*
+<a href="https://docs.google.com/presentation/d/1b9YHjgh6jnRwOaxoN4Ezi8YJ23ObiYC-9lLzKDKHhC4/edit#slide=id.gd431007ba2_0_208">Click to view our presentation</a> 
 
 ## Screenshots:
 <p>
