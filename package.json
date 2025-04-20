@@ -21,16 +21,13 @@
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
     "@react-navigation/stack": "^7.2.10",
-<<<<<<< HEAD
     "@rnmapbox/maps": "^10.1.38",
-=======
-    "@viro-community/react-viro": "^2.41.1",
->>>>>>> 134d8fb21b8fe680957e99bcda3ddb1958441363
     "axios": "^1.8.4",
     "expo": "^52.0.46",
     "expo-blur": "~14.0.3",
     "expo-camera": "~16.0.18",
     "expo-constants": "~17.0.8",
+    "expo-dev-client": "~5.0.20",
     "expo-font": "~13.0.4",
     "expo-haptics": "~14.0.1",
     "expo-linking": "~7.0.5",
@@ -42,18 +39,19 @@
     "expo-system-ui": "~4.0.9",
     "expo-web-browser": "~14.0.2",
     "jwt-decode": "^4.0.0",
+    "lottie-react-native": "^7.2.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-icons": "^5.5.0",
     "react-native": "0.76.9",
     "react-native-gesture-handler": "~2.20.2",
+    "react-native-maps": "^1.22.1",
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "^4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5",
-    "expo-dev-client": "~5.0.20"
+    "react-native-webview": "13.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

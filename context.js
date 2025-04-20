@@ -78,6 +78,11 @@ export const AuthProvider = ({ children }) => {
       if(res.status === 200) {
         return {success : true}
       }
+      if(res.status === 201) {
+        const {currentClueIndex} = res.data;
+        setCurrentClueIndex(currentClueIndex);
+        return {success:true}
+      }
 
       return {success: false}
 
@@ -96,12 +101,13 @@ export const AuthProvider = ({ children }) => {
 
     try {
       const res = await axios.post(`${BASE_URL}/play/solveClue`, {
-        User,
-        huntId,
-        currentClueIndex
+        userId: User,
+        huntId: huntId,
+        clueIndex: currentClueIndex
       });
 
       if(res.status === 200) {
+        setCurrentClueIndex(currentClueIndex+1);
         return {success : true}
       }
 

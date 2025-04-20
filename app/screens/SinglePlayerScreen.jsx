@@ -9,6 +9,17 @@ export default function SinglePlayerScreen() {
     const {fetchHunts} = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [huntImages, setHuntImages] = useState({});
+
+    // Images for hunts
+    const huntPhotos = [
+      require('../../assets/maps/h1.jpg'),
+      require('../../assets/maps/h2.jpg'),
+      require('../../assets/maps/h3.jpg'),
+      require('../../assets/maps/h4.jpg'),
+      require('../../assets/maps/h5.jpg'),
+      require('../../assets/maps/h6.jpg'),
+    ];
 
     const fetchHunt = async() => {
       setLoading(true);
@@ -18,6 +29,14 @@ export default function SinglePlayerScreen() {
         const res = await fetchHunts(location);
         console.log('Fetched hunts:', res);
 
+        // Assign random images to each hunt
+        const imageAssignments = {};
+        res.forEach(hunt => {
+          const randomIndex = Math.floor(Math.random() * huntPhotos.length);
+          imageAssignments[hunt] = huntPhotos[(randomIndex+1)%6];
+        });
+        
+        setHuntImages(imageAssignments);
         setHunts(res);
         setLoading(false);
       } catch(err) {
@@ -68,7 +87,7 @@ export default function SinglePlayerScreen() {
                 onPress={() => router.push(`/hunt/${item}`)}
               >
                 <Image
-                  source={{ uri : `https://source.unsplash.com/600x400/?${location}` }}
+                  source={huntImages[item]}
                   style={styles.huntImage}
                   resizeMode="cover"
                 />
