@@ -60,8 +60,61 @@ TrailMyst is a gamified travel app designed for solo explorers, transforming ord
 
 ---
 
-## 🛠 Getting Started
+## Getting Started
 
-### 1. Install Dependencies
+### 1. Install dependencies
+
 ```bash
 npm install
+```
+
+### 2. Start the app
+
+```bash
+npx expo start
+```
+
+Then choose to run it on:
+
+- [Expo Go](https://expo.dev/go)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Development build](https://docs.expo.dev/develop/development-builds/introduction/)
+
+### 3. Reset to blank project (Optional)
+
+```bash
+npm run reset-project
+```
+
+This moves starter code to `app-example/` and gives you a fresh `app/` folder.
+
+## Demo Video Link:
+<a href="#">Click to view our demo video</a> *(To be added)*
+
+## Presentation Link:
+<a href="#">Click to view our presentation</a> *(To be added)*
+
+## Screenshots:
+<p>
+  <img src="https://via.placeholder.com/280x580.png?text=Splash+Screen" width="280" height="580" hspace="10">
+  <img src="https://via.placeholder.com/280x580.png?text=Location+Hint+Screen" width="280" height="580" hspace="10">
+</p>
+
+<p>
+  <img src="https://via.placeholder.com/280x580.png?text=Treasure+Chest+AR+Screen" width="280" height="580" hspace="10">
+  <img src="https://via.placeholder.com/280x580.png?text=Success+Alert+Screen" width="280" height="580" hspace="10">
+</p>
+
+## Contributors:
+
+Team Name: Trilluminati FNGR
+
+* [Dhruv Rastogi](https://github.com/DHRUVRastogi-123)
+* [Mirga Farhaan Baig](https://github.com/fourhaan)
+* [Gantavya Rohatgi](https://github.com/gantavyarohatgi)
+* [Nabhanshu Dash](https://github.com/NabhanshuDash)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
