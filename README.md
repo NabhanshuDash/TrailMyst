@@ -1,50 +1,80 @@
-# Welcome to your Expo app 👋
+<h1 align="center">TrailMyst
+ (Built with Expo & React Native)</h1>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 🗺️ TrailMyst Overview
 
-## Get started
+## Tech Stack used:
+<img src="https://img.shields.io/badge/React Native-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Native"> <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo"> <img src="https://img.shields.io/badge/React Navigation-000000?style=for-the-badge&logo=react-router&logoColor=white" alt="React Navigation"> <img src="https://img.shields.io/badge/AR.js-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="AR.js"> <img src="https://img.shields.io/badge/EAS Build-0A0A0A?style=for-the-badge&logo=expo&logoColor=white" alt="EAS Build"> <img src="https://img.shields.io/badge/Geolocation API-4285F4?style=for-the-badge&logo=google-maps&logoColor=white" alt="Geolocation API">
 
-1. Install dependencies
+## Key Features:
 
-   ```bash
-   npm install
-   ```
+### Gameplay Mechanics
 
-2. Start the app
+- 📍 **Live Location Tracking:** Uses the Geolocation API to detect user position.
+- 🚨 **Proximity Trigger:** Alerts the user upon reaching within 60 meters of the destination.
+- 📸 **AR Interaction:** Opens the camera and shows a treasure chest when at the destination.
+- 🧰 **Unlock Mechanism:** Tapping the treasure chest displays a success alert and reveals the next clue.
 
-   ```bash
-    npx expo start
-   ```
+### Developer Features
 
-In the output, you'll find options to open the app in a
+- ⚡ **Fast Refresh:** Seamless development using Expo Go and hot reloading.
+- 🛠️ **File-based Routing:** Managed through the Expo Router.
+- 🧪 **Testing in Emulator/Device:** Easily test on iOS/Android or Expo Go.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Start the app
+
+```bash
+npx expo start
+```
+
+Then choose to run it on:
+
+- [Expo Go](https://expo.dev/go)
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Development build](https://docs.expo.dev/develop/development-builds/introduction/)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 3. Reset to blank project (Optional)
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This moves starter code to `app-example/` and gives you a fresh `app/` folder.
 
-## Learn more
+## Demo Video Link:
+<a href="#">Click to view our demo video</a> *(To be added)*
 
-To learn more about developing your project with Expo, look at the following resources:
+## Presentation Link:
+<a href="#">Click to view our presentation</a> *(To be added)*
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Screenshots:
+<p>
+  <img src="https://via.placeholder.com/280x580.png?text=Splash+Screen" width="280" height="580" hspace="10">
+  <img src="https://via.placeholder.com/280x580.png?text=Location+Hint+Screen" width="280" height="580" hspace="10">
+</p>
 
-## Join the community
+<p>
+  <img src="https://via.placeholder.com/280x580.png?text=Treasure+Chest+AR+Screen" width="280" height="580" hspace="10">
+  <img src="https://via.placeholder.com/280x580.png?text=Success+Alert+Screen" width="280" height="580" hspace="10">
+</p>
 
-Join our community of developers creating universal apps.
+## Contributors:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Team Name: Trilluminati FNG
+
+* [Mirga Farhaan Baig](https://github.com/fourhaan)
+* [Gantavya Rohatgi](https://github.com/gantavyarohatgi)
+* [Nabhanshu Dash](https://github.com/NabhanshuDash)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
