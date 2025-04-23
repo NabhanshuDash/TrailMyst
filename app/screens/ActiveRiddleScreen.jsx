@@ -257,7 +257,7 @@ const ActiveRiddleScreen = () => {
             
             // Otherwise fetch a new task
             const res = await axios.post(
-                'https://bba7-2409-40e3-2005-6ba2-3101-4ad1-ba3c-5d41.ngrok-free.app/api/tasks/suggestTasks',
+                'https://trailmyst.onrender.com/api/tasks/suggestTasks',
                 {
                     userLat: location.latitude,
                     userLong: location.longitude,

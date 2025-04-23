@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [User, setUser] = useState(null);
   const [activeHunt, setActiveHunt] = useState({});
   const [currentClueIndex, setCurrentClueIndex] = useState(null);
-  const BASE_URL = 'https://bba7-2409-40e3-2005-6ba2-3101-4ad1-ba3c-5d41.ngrok-free.app/api';
+  const BASE_URL = 'https://trailmyst.onrender.com/api';
 
   // Load token on startup
   useEffect(() => {
